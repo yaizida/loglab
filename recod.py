@@ -29,6 +29,7 @@ def record():
         record_exists_sensor = SqlSensor(
             task_id=f'check_record_exists_{table_name}',
             conn_id='PostgresBI',
+            # Запрос должен вернуть не нулевое количество строк
             sql=f"SELECT COUNT(*) FROM test.{table_name}",
         )
         get_table_list(table_name) << record_exists_sensor
